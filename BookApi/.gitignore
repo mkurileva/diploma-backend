@@ -1,0 +1,13 @@
+## Глушим bin и obj в любой папке проекта (включая app/)
+**/bin/
+**/obj/
+
+## Настройки Visual Studio
+**/.vs/
+*.user
+*.suo
+
+## Настройки VS Code
+**/.vscode/операционной системы
+Thumbs.db
+Desktop.ini

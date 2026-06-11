@@ -18,7 +18,7 @@ namespace BookApi.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public string Color { get; set; } = "yellow";
-        public User? User { get; set; }
+        public User? User { get; set; }  
 
 
     }
