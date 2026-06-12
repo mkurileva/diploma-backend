@@ -28,9 +28,8 @@ namespace BookApi.Controllers
 
         if (userId != null)
         {
-            // ИСПРАВЛЕНИЕ: берем ТОЛЬКО личные книги пользователя, 
-            // исключая встроенные коллекции из этого списка.
-            query = query.Where(b => b.UserId == userId && !b.IsBuiltIn); 
+            // Покажи все книги, где UserId совпадает, на всякий случай уберем !b.IsBuiltIn для теста счетчика
+            query = query.Where(b => b.UserId == userId); 
         }
         else
         {

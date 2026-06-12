@@ -76,21 +76,23 @@ namespace BookApi.Controllers
 
         // 4. Обновить заметку
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateNote(int id, [FromBody] Note updated, [FromQuery] int userId)
+        public async Task<IActionResult> UpdateNote(int id, [FromBody] UpdateNoteTextRequest request, [FromQuery] int userId)
         {
             var note = await _context.Notes
-                .FirstOrDefaultAsync(n =>
-                    n.Id == id &&
-                    n.UserId == userId);
+                .FirstOrDefaultAsync(n => n.Id == id && n.UserId == userId);
 
             if (note == null)
                 return NotFound("Заметка не найдена или у вас нет прав на её редактирование.");
 
-            note.NoteText = updated.NoteText;
+            note.NoteText = request.NoteText; // Меняем только текст!
 
             await _context.SaveChangesAsync();
-
             return NoContent();
+        }
+
+                public class UpdateNoteTextRequest
+        {
+            public string NoteText { get; set; } = string.Empty;
         }
     }
 }
