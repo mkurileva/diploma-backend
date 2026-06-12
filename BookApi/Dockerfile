@@ -1,5 +1,5 @@
-# 1. Этап сборки (Build)
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# 1. Этап сборки (Build) - МЕНЯЕМ НА 10.0
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Копируем файл проекта и восстанавливаем зависимости
@@ -10,8 +10,8 @@ RUN dotnet restore "./BookApi.csproj"
 COPY . .
 RUN dotnet publish "BookApi.csproj" -c Release -o /app/publish
 
-# 2. Этап запуска (Runtime)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+# 2. Этап запуска (Runtime) - МЕНЯЕМ НА 10.0
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
